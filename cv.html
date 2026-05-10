@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Christine Mavrommataki</title>
+  <style>
+    /* ── RESET & BASE ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0f2942;
+      --blue:   #1a6fa8;
+      --accent: #2a9fd6;
+      --light:  #f4f7fb;
+      --mid:    #e2edf7;
+      --text:   #2c3e50;
+      --muted:  #6b7c93;
+      --white:  #ffffff;
+      --nav-h:  64px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, Arial, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      z-index: 1000;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+    }
+
+    .nav-brand {
+      color: var(--white);
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      text-decoration: none;
+    }
+
+    .nav-brand span {
+      color: var(--accent);
+    }
+
+    /* Desktop links */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #a8c4e0;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 4px;
+      letter-spacing: 0.4px;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--white);
+      background: rgba(42,159,214,0.18);
+    }
+
+    /* Burger button */
+    .burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 6px;
+    }
+
+    .burger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: var(--nav-h);
+      left: 0; right: 0;
+      background: var(--navy);
+      padding: 16px 0 24px;
+      z-index: 999;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .mobile-menu.open { display: block; }
+
+    .mobile-menu a {
+      display: block;
+      color: #a8c4e0;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 12px 32px;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .mobile-menu a:hover {
+      color: var(--white);
+      background: rgba(42,159,214,0.15);
+    }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--navy) 0%, #1a3a5c 55%, #1a6fa8 100%);
+      display: flex;
+      align-items: center;
+      padding: calc(var(--nav-h) + 40px) 40px 80px;
+    }
+
+    .hero-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(34px, 5vw, 54px);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    .hero-text h1 span { color: var(--accent); }
+
+    .hero-text .role {
+      font-size: clamp(15px, 2vw, 19px);
+      color: #a8c4e0;
+      margin-bottom: 24px;
+      font-weight: 400;
+    }
+
+    .hero-text .summary {
+      font-size: 14.5px;
+      color: #cde0f5;
+      line-height: 1.75;
+      max-width: 600px;
+      margin-bottom: 32px;
+    }
+
+    .hero-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .hero-contact a,
+    .hero-contact span {
+      color: #a8c4e0;
+      font-size: 13.5px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-contact a:hover { color: var(--accent); }
+
+    .hero-contact .icon {
+      width: 18px;
+      height: 18px;
+      opacity: 0.7;
+      flex-shrink: 0;
+    }
+
+    .hero-badge {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .badge-box {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 18px 28px;
+      text-align: center;
+      backdrop-filter: blur(6px);
+    }
+
+    .badge-box .num {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .badge-box .label {
+      font-size: 11px;
+      color: #a8c4e0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--white);
+      padding: 11px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .cta-btn:hover { background: #1e8fc4; transform: translateY(-1px); }
+
+    /* ── SECTION WRAPPER ── */
+    .section {
+      padding: 90px 40px;
+    }
+
+    .section:nth-child(even) {
+      background: var(--light);
+    }
+
+    .section-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      margin-bottom: 52px;
+      text-align: center;
+    }
+
+    .section-header h2 {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .section-header .underline {
+      width: 48px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin: 0 auto;
+    }
+
+    /* ── EXPERIENCE TIMELINE ── */
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 6px;
+      bottom: 0;
+      width: 2px;
+      background: var(--mid);
+    }
+
+    .tl-item {
+      position: relative;
+      margin-bottom: 48px;
+    }
+
+    .tl-item:last-child { margin-bottom: 0; }
+
+    .tl-dot {
+      position: absolute;
+      left: -28px;
+      top: 6px;
+      width: 16px;
+      height: 16px;
+      background: var(--accent);
+      border: 3px solid var(--white);
+      border-radius: 50%;
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+
+    .tl-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 24px 28px;
+      box-shadow: 0 2px 16px rgba(15,41,66,0.08);
+      border-left: 4px solid var(--accent);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .tl-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(15,41,66,0.13);
+    }
+
+    .tl-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .tl-company {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .tl-date {
+      font-size: 12px;
+      color: var(--muted);
+      background: var(--mid);
+      padding: 3px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .tl-role {
+      font-size: 13.5px;
+      font-style: italic;
+      color: var(--blue);
+      margin-bottom: 4px;
+    }
+
+    .tl-location {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .tl-card ul {
+      padding-left: 18px;
+    }
+
+    .tl-card ul li {
+      font-size: 13px;
+      color: #444;
+      margin-bottom: 5px;
+      line-height: 1.55;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .edu-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 28px;
+      box-shadow: 0 2px 16px rgba(15,41,66,0.08);
+      border-top: 4px solid var(--accent);
+    }
+
+    .edu-card .degree {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .edu-card .school {
+      font-size: 13.5px;
+      color: var(--blue);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .edu-card .dates {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .edu-card .dissertation {
+      font-size: 12.5px;
+      color: #555;
+      line-height: 1.6;
+      border-top: 1px solid var(--mid);
+      padding-top: 10px;
+      margin-top: 10px;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+    }
+
+    .skills-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 28px;
+      box-shadow: 0 2px 16px rgba(15,41,66,0.08);
+    }
+
+    .skills-card h3 {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      margin-bottom: 18px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--mid);
+    }
+
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .tag {
+      background: var(--mid);
+      color: var(--navy);
+      border-radius: 4px;
+      padding: 5px 11px;
+      font-size: 12px;
+      font-weight: 500;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .tag:hover {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .soft-list {
+      list-style: none;
+    }
+
+    .soft-list li {
+      font-size: 13px;
+      color: var(--text);
+      padding: 7px 0;
+      border-bottom: 1px solid var(--mid);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .soft-list li:last-child { border-bottom: none; }
+
+    .soft-list li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── LANGUAGES ── */
+    .lang-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+    }
+
+    .lang-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: 0 2px 16px rgba(15,41,66,0.08);
+      border-bottom: 4px solid var(--accent);
+    }
+
+    .lang-card .flag {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .lang-card .lang-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .lang-card .lang-level {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ── CERTIFICATIONS ── */
+    .cert-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .cert-item {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 20px 24px;
+      box-shadow: 0 2px 16px rgba(15,41,66,0.08);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: transform 0.2s;
+    }
+
+    .cert-item:hover { transform: translateY(-2px); }
+
+    .cert-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--mid);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .cert-icon svg { width: 22px; height: 22px; }
+
+    .cert-name {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .cert-issuer {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* ── CONFERENCES ── */
+    .conf-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+    }
+
+    .conf-item {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 22px 24px;
+      box-shadow: 0 2px 16px rgba(15,41,66,0.08);
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      transition: transform 0.2s;
+    }
+
+    .conf-item:hover { transform: translateY(-2px); }
+
+    .conf-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--mid);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .conf-icon svg { width: 22px; height: 22px; }
+
+    .conf-name {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.4;
+    }
+
+    .conf-meta {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    @media (max-width: 800px) {
+      .conf-list { grid-template-columns: 1fr; }
+      .lang-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: #a8c4e0;
+      text-align: center;
+      padding: 32px 20px;
+      font-size: 13px;
+    }
+
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 800px) {
+      .nav-links { display: none; }
+      .burger { display: flex; }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-badge {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .edu-grid,
+      .skills-grid { grid-template-columns: 1fr; }
+
+      .lang-grid { grid-template-columns: 1fr 1fr; }
+
+      .cert-list { grid-template-columns: 1fr; }
+
+      .section { padding: 64px 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .lang-grid { grid-template-columns: 1fr 1fr; }
+      nav { padding: 0 20px; }
+    }
+
+    /* active nav highlight on scroll */
+    .nav-links a.active {
+      color: var(--white);
+      background: rgba(42,159,214,0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ NAVBAR ══ -->
+  <nav>
+    <a href="#home" class="nav-brand">CM<span>.</span></a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#languages">Languages</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#volunteering">Volunteering</a></li>
+      <li><a href="#conferences">Conferences</a></li>
+    </ul>
+
+    <button class="burger" id="burger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile slide-down menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home"           onclick="closeMenu()">Home</a>
+    <a href="#about"          onclick="closeMenu()">About</a>
+    <a href="#experience"     onclick="closeMenu()">Experience</a>
+    <a href="#education"      onclick="closeMenu()">Education</a>
+    <a href="#skills"         onclick="closeMenu()">Skills</a>
+    <a href="#languages"      onclick="closeMenu()">Languages</a>
+    <a href="#certifications" onclick="closeMenu()">Certifications</a>
+    <a href="#volunteering"  onclick="closeMenu()">Volunteering</a>
+    <a href="#conferences"   onclick="closeMenu()">Conferences</a>
+  </div>
+
+  <!-- ══ HERO ══ -->
+  <section id="home">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h1>Christine<br><span>Mavrommataki</span></h1>
+        <p class="role">Data &amp; Analytics Professional &nbsp;|&nbsp; Insights · Strategy · Statistical Modelling</p>
+        <p class="summary">
+          An MSc in Applied Statistics with over 15 years of experience in data analysis,
+          visualization, and business insights generation across diverse industries.
+          Passionate about driving business value through advanced analytics and clear storytelling.
+        </p>
+        <div class="hero-contact">
+          <span>
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Barcelona, Spain
+          </span>
+          <a href="mailto:christine.mavrommataki@gmail.com">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+            christine.mavrommataki@gmail.com
+          </a>
+          <span>
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.22 1.18 2 2 0 012.22 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+            +34 629 218 234
+          </span>
+          <a href="https://www.linkedin.com/in/christine-mavrommataki/" target="_blank">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            linkedin.com/in/christine-mavrommataki
+          </a>
+        </div>
+        <br>
+        <a href="#experience" class="cta-btn">View My Experience</a>
+      </div>
+
+      <div class="hero-badge">
+        <div class="badge-box">
+          <div class="num">15+</div>
+          <div class="label">Years Experience</div>
+        </div>
+        <div class="badge-box">
+          <div class="num">5</div>
+          <div class="label">Companies</div>
+        </div>
+        <div class="badge-box">
+          <div class="num">MSc</div>
+          <div class="label">Applied Statistics</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ABOUT ══ -->
+  <section id="about" class="section">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>About Me</h2>
+        <div class="underline"></div>
+      </div>
+      <div style="max-width:760px; margin:0 auto; font-size:15px; line-height:1.85; color:#444; text-align:center;">
+        A highly skilled Data &amp; Analytics Specialist with an MSc in Applied Statistics and over 15 years of experience
+        in data analysis, visualization, and business insights generation across diverse industries. Proven expertise in
+        extracting, transforming, and integrating data from multiple sources to create actionable insights. Adept at
+        leveraging tools like Power BI, Power Query, DAX, SQL, Python, and Snowflake to deliver data-driven solutions.
+        Strong experience in cross-functional collaboration, process optimization, and leading data-related projects.
+        Passionate about driving business value through advanced analytics and data visualization. Fluent in English with
+        a solid understanding of business needs and the ability to communicate complex insights to non-technical
+        stakeholders.
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ EXPERIENCE ══ -->
+  <section id="experience" class="section">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>Experience</h2>
+        <div class="underline"></div>
+      </div>
+
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-company">Nestlé Nespresso SA</span>
+              <span class="tl-date">July 2022 – Present</span>
+            </div>
+            <div class="tl-role">Data &amp; Insights Analyst</div>
+            <div class="tl-location">Barcelona, Spain</div>
+            <ul>
+              <li>Act as primary liaison with global markets and zones to understand and address their data &amp; insights requirements.</li>
+              <li>Develop and maintain robust ETL processes to extract, transform, and integrate data for analytics, dashboards, and reports.</li>
+              <li>Create interactive dashboards and insightful visualizations using Power BI, addressing market-specific KPIs, campaign effectiveness, sales performance, and customer behaviors.</li>
+              <li>Ensure data accuracy and consistency, performing regular quality checks and enhancements aligned with business needs.</li>
+              <li>Lead complex analyses to guide strategic business decisions, communicating insights clearly to stakeholders across various business functions ensuring alignment with business objectives.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-company">BlackRock</span>
+              <span class="tl-date">January 2018 – December 2020</span>
+            </div>
+            <div class="tl-role">Business Analyst</div>
+            <div class="tl-location">Budapest, Hungary</div>
+            <ul>
+              <li>Managed and executed data-driven projects collaborating with cross-functional IT and engineering teams to clarify and implement analytical requirements.</li>
+              <li>Conducted gap analysis, documented business processes, and optimized workflows enhancing efficiency and productivity.</li>
+              <li>Created comprehensive training materials and user guides, conducting training workshops to drive adoption and proficiency.</li>
+              <li>Coordinated user acceptance testing (UAT) phases, ensuring robust data quality and accuracy in new analytical tool implementations.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-company">DIAGEO</span>
+              <span class="tl-date">November 2016 – December 2017</span>
+            </div>
+            <div class="tl-role">Central Statistical Forecasting Analyst</div>
+            <div class="tl-location">Budapest, Hungary</div>
+            <ul>
+              <li>Developed multivariate statistical forecasting models enhancing forecast accuracy by integrating sales, price, and marketing activity data.</li>
+              <li>Implemented rigorous data quality checks and root cause analysis to identify and address discrepancies in forecasted vs. actual sales.</li>
+              <li>Collaborated with supply chain stakeholders, clearly communicating statistical methodologies and insights for improved business outcomes.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-company">Accenture Digital</span>
+              <span class="tl-date">October 2010 – October 2016</span>
+            </div>
+            <div class="tl-role">Consultant</div>
+            <div class="tl-location">Athens, Greece</div>
+            <ul>
+              <li>Conducted data extraction, transformation, and integration from multiple sources, including retail panel data from third-party vendors (e.g., IRI, Nielsen), to create comprehensive datasets for analysis and visualization.</li>
+              <li>Applied advanced analytics techniques, including customer segmentation, migration analysis, and exploratory data analysis, to uncover patterns and insights for targeted marketing campaigns.</li>
+              <li>Developed predictive models to measure the direct and indirect impact of media activities on sales, optimizing budget allocation and maximizing ROI.</li>
+              <li>Collaborated with cross-functional teams and stakeholders to deliver actionable insights, ensuring alignment with business objectives and driving data-informed decision-making.</li>
+              <li>Utilized statistical methods and tools (e.g., SAS, Excel, SQL) to perform fraud detection and prevention, enhancing business processes and decision-making.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-company">Centrum Strategic Marketing Research</span>
+              <span class="tl-date">May 2008 – October 2010</span>
+            </div>
+            <div class="tl-role">Supervisor, Data Processing &amp; Data Entry Department</div>
+            <div class="tl-location">Athens, Greece</div>
+            <ul>
+              <li>Coordination of Data Processing and managing the team of part-time employees for Data Entry.</li>
+              <li>Help with the day-to-day servicing of clients.</li>
+              <li>Creating statistical tables for reporting.</li>
+              <li>Developing statistical analysis based on project needs (correlation, regression models, Factor Analysis).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-company">National Book Center of Greece</span>
+              <span class="tl-date">April 2006 – June 2006</span>
+            </div>
+            <div class="tl-role">Statistician</div>
+            <div class="tl-location">Athens, Greece</div>
+            <ul>
+              <li>Enriched the 2nd Hellenic Research on Reading Behavior with meaningful insights using crosstabs tables with the SPSS program.</li>
+              <li>Advanced usage of SPSS syntax.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-company">SPSSBI Business Intelligence</span>
+              <span class="tl-date">July 2004 – November 2004</span>
+            </div>
+            <div class="tl-role">Intern Statistician</div>
+            <div class="tl-location">Athens, Greece</div>
+            <ul>
+              <li>Creation of User Guide for ANOVA and U-ANOVA methods.</li>
+              <li>Updating client list and improving the format in a more comprehensive way.</li>
+              <li>Intern dissertation: Analysed and presented various statistical methods used for Credit Risk, listing pros and cons for each approach and providing accuracy as a success measure.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-company">Agricultural Bank of Greece</span>
+              <span class="tl-date">June 2003 – August 2003</span>
+            </div>
+            <div class="tl-role">Bank Intern</div>
+            <div class="tl-location">Karlovasi Branch, Greece</div>
+            <ul>
+              <li>Assistance of Insurance Agent: collection of insurance premiums, sending mail to insured clients, pricing insurance premiums and filling insurance contracts, completion of additional terms.</li>
+              <li>Assistance of Loan Issues: loan liquidation, filling application forms for personal loans, house loans, and credit accounts.</li>
+              <li>Assistance of bank teller: opening and closing register, withdrawals and deposits of money, opening of insurance premium accounts and joint accounts, current accounts, updating pass-books, handling cheques via DIAS (Inter-banking Communication System) and cheque liquidation.</li>
+              <li>Intern dissertation: Project on Early Retirement of Agricultural-Workers in Greece.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ EDUCATION ══ -->
+  <section id="education" class="section">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>Education</h2>
+        <div class="underline"></div>
+      </div>
+
+      <div class="edu-grid">
+        <div class="edu-card">
+          <div class="degree">Master in Applied Statistics</div>
+          <div class="school">Athens University of Economics and Business</div>
+          <div class="dates">2005 – 2008 &nbsp;·&nbsp; Athens, Greece</div>
+          <div class="dissertation">
+            Dissertation: <em>«Multivariate Analysis of Ordinal Data»</em><br>
+            Method: Hybrid Latent Models &nbsp;|&nbsp; Tool: WINMIRA
+          </div>
+        </div>
+
+        <div class="edu-card">
+          <div class="degree">BSc in Statistics &amp; Actuarial and Financial Mathematics</div>
+          <div class="school">University of Aegean</div>
+          <div class="dates">2001 – 2005 &nbsp;·&nbsp; Samos, Greece</div>
+          <div class="dissertation">
+            Dissertation: <em>«Statistical Analysis of Gynecologic Cancer Data»</em><br>
+            Methods: Cox Regression, Kaplan-Meier &nbsp;|&nbsp; Tool: SPSS
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SKILLS ══ -->
+  <section id="skills" class="section">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>Skills</h2>
+        <div class="underline"></div>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skills-card">
+          <h3>Technical Skills</h3>
+          <div class="tag-cloud">
+            <span class="tag">SQL</span>
+            <span class="tag">Python</span>
+            <span class="tag">R</span>
+            <span class="tag">PySpark</span>
+            <span class="tag">Scala</span>
+            <span class="tag">Power BI</span>
+            <span class="tag">Power Query</span>
+            <span class="tag">DAX</span>
+            <span class="tag">Tableau</span>
+            <span class="tag">Snowflake</span>
+            <span class="tag">KNIME</span>
+            <span class="tag">SPSS</span>
+            <span class="tag">SAS</span>
+            <span class="tag">Excel</span>
+            <span class="tag">Git</span>
+            <span class="tag">Jupyter</span>
+            <span class="tag">Jira</span>
+            <span class="tag">Confluence</span>
+          </div>
+        </div>
+
+        <div class="skills-card">
+          <h3>Analytics Expertise</h3>
+          <div class="tag-cloud">
+            <span class="tag">ETL Pipelines</span>
+            <span class="tag">Data Visualization</span>
+            <span class="tag">Statistical Modelling</span>
+            <span class="tag">Forecasting</span>
+            <span class="tag">Customer Segmentation</span>
+            <span class="tag">Social Network Analysis</span>
+            <span class="tag">Predictive Models</span>
+            <span class="tag">Fraud Detection</span>
+            <span class="tag">KPI Dashboards</span>
+            <span class="tag">Data Quality</span>
+            <span class="tag">UAT</span>
+          </div>
+        </div>
+
+        <div class="skills-card">
+          <h3>Soft Skills</h3>
+          <ul class="soft-list">
+            <li>Attention to detail &amp; quality focus</li>
+            <li>Complex problem solving</li>
+            <li>Stakeholder communication</li>
+            <li>Team training &amp; mentoring</li>
+            <li>Project timeline management</li>
+            <li>Independent &amp; proactive mindset</li>
+            <li>Multinational collaboration</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ LANGUAGES ══ -->
+  <section id="languages" class="section">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>Languages</h2>
+        <div class="underline"></div>
+      </div>
+
+      <div class="lang-grid">
+        <div class="lang-card">
+          <div class="flag">🇬🇷</div>
+          <div class="lang-name">Greek</div>
+          <div class="lang-level">Native</div>
+        </div>
+        <div class="lang-card">
+          <div class="flag">🇬🇧</div>
+          <div class="lang-name">English</div>
+          <div class="lang-level">Professional<br>Certificate of Proficiency</div>
+        </div>
+        <div class="lang-card">
+          <div class="flag">🇫🇷</div>
+          <div class="lang-name">French</div>
+          <div class="lang-level">Basic<br>D.E.L.F. 1er Degré</div>
+        </div>
+        <div class="lang-card">
+          <div class="flag">🇮🇹</div>
+          <div class="lang-name">Italian</div>
+          <div class="lang-level">B2<br>Diploma di Lingua Italiana</div>
+        </div>
+        <div class="lang-card">
+          <div class="flag">🇪🇸</div>
+          <div class="lang-name">Spanish</div>
+          <div class="lang-level">B1</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CERTIFICATIONS ══ -->
+  <section id="certifications" class="section">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>Certifications</h2>
+        <div class="underline"></div>
+      </div>
+
+      <div class="cert-list">
+
+        <div class="cert-item">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1a6fa8" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M8.56 14.19L7 23l5-3 5 3-1.56-8.81"/></svg>
+          </div>
+          <div>
+            <div class="cert-name">KNIME Advanced Proficiency</div>
+            <div class="cert-issuer">KNIME</div>
+          </div>
+        </div>
+
+        <div class="cert-item">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1a6fa8" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M8.56 14.19L7 23l5-3 5 3-1.56-8.81"/></svg>
+          </div>
+          <div>
+            <div class="cert-name">KNIME Basic Proficiency</div>
+            <div class="cert-issuer">KNIME</div>
+          </div>
+        </div>
+
+        <div class="cert-item">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1a6fa8" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div>
+            <div class="cert-name">Supervised Learning with scikit-learn</div>
+            <div class="cert-issuer">DataCamp</div>
+          </div>
+        </div>
+
+        <div class="cert-item">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1a6fa8" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+          </div>
+          <div>
+            <div class="cert-name">Project Management Foundations</div>
+            <div class="cert-issuer">LinkedIn Learning</div>
+          </div>
+        </div>
+
+        <div class="cert-item">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1a6fa8" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <div class="cert-name">ECDL Core Certificate</div>
+            <div class="cert-issuer">Advanced Excel &amp; PowerPoint</div>
+          </div>
+        </div>
+
+        <div class="cert-item">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1a6fa8" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div>
+            <div class="cert-name">Structural Equation Modeling with LISREL</div>
+            <div class="cert-issuer">Athens University of Economics and Business &nbsp;·&nbsp; 16–18 January 2007</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ VOLUNTEERING ══ -->
+  <section id="volunteering" class="section">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>Volunteering</h2>
+        <div class="underline"></div>
+      </div>
+
+      <div class="conf-list">
+
+        <div class="conf-item">
+          <div class="conf-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1a6fa8" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          </div>
+          <div>
+            <div class="conf-name">Member of "Helping Hands"</div>
+            <div class="conf-meta">Volunteering community at DIAGEO &nbsp;·&nbsp; 2016</div>
+          </div>
+        </div>
+
+        <div class="conf-item">
+          <div class="conf-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1a6fa8" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          </div>
+          <div>
+            <div class="conf-name">Member of "Social Impact"</div>
+            <div class="conf-meta">Volunteering community at BlackRock &nbsp;·&nbsp; 2018–2020</div>
+          </div>
+        </div>
+
+        <div class="conf-item">
+          <div class="conf-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1a6fa8" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          </div>
+          <div>
+            <div class="conf-name">Social Cuisine "The Other Human"</div>
+            <div class="conf-meta">Active participant &nbsp;·&nbsp; December 2020 – June 2022</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONFERENCES ══ -->
+  <section id="conferences" class="section">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>Conferences</h2>
+        <div class="underline"></div>
+      </div>
+
+      <div class="conf-list">
+
+        <div class="conf-item">
+          <div class="conf-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1a6fa8" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div>
+            <div class="conf-name">20th Conference of Statistics — «Statistics &amp; Society»</div>
+            <div class="conf-meta">Hellenic Statistical Institute &nbsp;·&nbsp; 11–15 April 2007</div>
+          </div>
+        </div>
+
+        <div class="conf-item">
+          <div class="conf-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1a6fa8" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div>
+            <div class="conf-name">19th Conference of Statistics — «Statistics &amp; Polling»</div>
+            <div class="conf-meta">Hellenic Statistical Institute &nbsp;·&nbsp; 26–29 April 2006</div>
+          </div>
+        </div>
+
+        <div class="conf-item">
+          <div class="conf-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1a6fa8" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div>
+            <div class="conf-name">«Pythagorian Thought and Scientific Speech»</div>
+            <div class="conf-meta">Department of Mathematics, Aegean University &nbsp;·&nbsp; 2–4 September 2005</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <p>Christine Mavrommataki &nbsp;·&nbsp; Barcelona, Spain &nbsp;·&nbsp;
+      <a href="mailto:christine.mavrommataki@gmail.com">christine.mavrommataki@gmail.com</a>
+      &nbsp;·&nbsp;
+      <a href="https://www.linkedin.com/in/christine-mavrommataki/" target="_blank">LinkedIn</a>
+    </p>
+  </footer>
+
+  <!-- ══ SCRIPTS ══ -->
+  <script>
+    // Burger toggle
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+
+    function closeMenu() {
+      burger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    }
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navAnchors = document.querySelectorAll('.nav-links a');
+
+    function setActive() {
+      let current = '';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 80;
+        if (window.scrollY >= top) current = sec.id;
+      });
+      navAnchors.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+      });
+    }
+
+    window.addEventListener('scroll', setActive, { passive: true });
+    setActive();
+  </script>
+</body>
+</html>
