@@ -566,6 +566,171 @@
       gap: 16px;
     }
 
+    /* ── GitHub CTA ── */
+    .github-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 22px;
+      background: var(--sidebar-bg);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 600;
+      padding: 11px 22px;
+      border-radius: 6px;
+      border: 2px solid var(--mint);
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+    }
+
+    .github-cta svg {
+      width: 18px; height: 18px;
+      stroke: var(--mint);
+      flex-shrink: 0;
+      transition: stroke 0.2s;
+    }
+
+    .github-cta:hover {
+      background: var(--mint);
+      color: var(--white);
+      transform: translateY(-1px);
+    }
+
+    .github-cta:hover svg { stroke: var(--white); }
+
+    /* ── Projects toggle ── */
+    .projects-section {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--mint-mid);
+    }
+
+    .projects-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: none;
+      border: 2px solid var(--mint);
+      color: var(--mint-dark);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      font-family: inherit;
+    }
+
+    .projects-toggle:hover {
+      background: var(--mint);
+      color: var(--white);
+    }
+
+    .projects-toggle .toggle-arrow {
+      display: inline-block;
+      transition: transform 0.3s;
+      font-style: normal;
+    }
+
+    .projects-toggle.open .toggle-arrow {
+      transform: rotate(180deg);
+    }
+
+    .projects-list {
+      display: none;
+      margin-top: 14px;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .projects-list.open {
+      display: flex;
+    }
+
+    .project-item {
+      background: var(--mint-light);
+      border-left: 3px solid var(--mint);
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+    }
+
+    .project-item p {
+      font-size: 12.5px;
+      color: #2d4a3e;
+      line-height: 1.6;
+    }
+
+    .project-item .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 8px;
+    }
+
+    .project-tag-tool {
+      background: rgba(42,153,130,0.12);
+      color: var(--mint-deep);
+      border: 1px solid rgba(42,153,130,0.3);
+      border-radius: 3px;
+      padding: 2px 8px;
+      font-size: 10.5px;
+      font-weight: 600;
+    }
+
+    .project-tag-industry {
+      background: var(--sidebar-bg);
+      color: var(--mint);
+      border-radius: 3px;
+      padding: 2px 8px;
+      font-size: 10.5px;
+      font-weight: 600;
+    }
+
+    /* ── Achievements ── */
+    .achievements {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--mint-mid);
+    }
+
+    .achievements-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--mint-dark);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .achievements-label::before {
+      content: '★';
+      font-size: 10px;
+      color: var(--mint);
+    }
+
+    .achievements ul {
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .achievements ul li {
+      font-size: 13px;
+      color: var(--sidebar-bg);
+      font-weight: 500;
+      background: var(--mint-light);
+      border-left: 3px solid var(--mint);
+      border-radius: 0 6px 6px 0;
+      padding: 7px 12px;
+      line-height: 1.5;
+    }
+
     /* ── Footer ── */
     footer {
       background: var(--sidebar-bg);
@@ -650,6 +815,10 @@
             <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
             <a href="https://www.linkedin.com/in/christine-mavrommataki/" target="_blank">linkedin.com/in/christine-mavrommataki</a>
           </li>
+          <li>
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+            <a href="https://github.com/chrissie-mavrom?tab=repositories" target="_blank">github.com/chrissie-mavrom</a>
+          </li>
         </ul>
       </div>
 
@@ -687,6 +856,10 @@
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
           Conferences
         </a></li>
+        <li><a href="#hobbies">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 21.7C5.4 15.5 2 11.2 2 8a6 6 0 0110-4.5A6 6 0 0122 8c0 3.2-3.4 7.5-10 13.7z"/></svg>
+          Hobbies
+        </a></li>
       </ul>
 
     </aside>
@@ -712,6 +885,10 @@
           Passionate about driving business value through advanced analytics and data visualization. Fluent in English with
           a solid understanding of business needs and the ability to communicate complex insights to non-technical stakeholders.
         </p>
+        <a href="https://github.com/chrissie-mavrom?tab=repositories" target="_blank" class="github-cta">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          Click here to see samples of my work
+        </a>
       </section>
 
       <!-- EXPERIENCE -->
@@ -760,6 +937,12 @@
                 <li>Created comprehensive training materials and user guides, conducting training workshops to drive adoption and proficiency.</li>
                 <li>Coordinated user acceptance testing (UAT) phases, ensuring robust data quality and accuracy in new analytical tool implementations.</li>
               </ul>
+              <div class="achievements">
+                <div class="achievements-label">Main Achievement</div>
+                <ul>
+                  <li>Coordinated and managed a high-impact feature in the CRM system that generated $1.02M in revenue for the firm.</li>
+                </ul>
+              </div>
             </div>
           </div>
 
@@ -777,6 +960,12 @@
                 <li>Implemented rigorous data quality checks and root cause analysis to identify and address discrepancies in forecasted vs. actual sales.</li>
                 <li>Collaborated with supply chain stakeholders, clearly communicating statistical methodologies and insights for improved business outcomes.</li>
               </ul>
+              <div class="achievements">
+                <div class="achievements-label">Main Achievement</div>
+                <ul>
+                  <li>Developed a multivariate forecasting model that improved prediction accuracy by 12% for the Mexico and Malaysia regions.</li>
+                </ul>
+              </div>
             </div>
           </div>
 
@@ -796,6 +985,80 @@
                 <li>Collaborated with cross-functional teams and stakeholders to deliver actionable insights, ensuring alignment with business objectives and driving data-informed decision-making.</li>
                 <li>Utilized statistical methods and tools (e.g., SAS, Excel, SQL) to perform fraud detection and prevention, enhancing business processes and decision-making.</li>
               </ul>
+              <div class="achievements">
+                <div class="achievements-label">Top 3 Achievements</div>
+                <ul>
+                  <li>Protected an insurance client from paying €500K in fraudulent claims within a single year.</li>
+                  <li>Optimized budget allocation, driving a 12% revenue increase for a major retail client.</li>
+                  <li>Segmented and categorized customer data to enable targeted marketing campaigns, boosting customer engagement by 26%.</li>
+                </ul>
+              </div>
+
+              <div class="projects-section">
+                <button class="projects-toggle" onclick="toggleProjects(this)" aria-expanded="false">
+                  ◆ Projects
+                  <span class="toggle-arrow">▾</span>
+                </button>
+                <div class="projects-list">
+
+                  <div class="project-item">
+                    <p>Applied Social Network Analysis to the total base of motor claims to detect possible fraud networks. Built a model using business rules and scored each claim — flagging it as fraudulent or not based on the resulting score.</p>
+                    <div class="project-tags">
+                      <span class="project-tag-tool">DataFlux</span>
+                      <span class="project-tag-tool">SAS Enterprise Guide</span>
+                      <span class="project-tag-tool">SAS Base</span>
+                      <span class="project-tag-industry">Insurance</span>
+                    </div>
+                  </div>
+
+                  <div class="project-item">
+                    <p>Developed a Customer Analytic Record based on specific KPIs. Built a Customer Segmentation model across two dimensions — Value and Behavioral — and applied migration analysis to identify changes across the two-year project scope.</p>
+                    <div class="project-tags">
+                      <span class="project-tag-tool">SAS Base</span>
+                      <span class="project-tag-tool">Excel</span>
+                      <span class="project-tag-industry">Hospitality</span>
+                    </div>
+                  </div>
+
+                  <div class="project-item">
+                    <p>Quantified the impact of Social Media on Automotive Sales. Developed a regression model to calculate the direct and indirect effect of media drivers and the effect of Media Activities on Word of Mouth and clicks using the SEM method.</p>
+                    <div class="project-tags">
+                      <span class="project-tag-tool">SAS Base</span>
+                      <span class="project-tag-tool">SAS Macros</span>
+                      <span class="project-tag-tool">Excel</span>
+                      <span class="project-tag-industry">Automotive</span>
+                    </div>
+                  </div>
+
+                  <div class="project-item">
+                    <p>Developed a Customer Analytic Record and applied clustering algorithm techniques for a deeper understanding of customers. Customer clusters were used for promotional strategy and sales effectiveness.</p>
+                    <div class="project-tags">
+                      <span class="project-tag-tool">SPSS</span>
+                      <span class="project-tag-tool">Excel</span>
+                      <span class="project-tag-industry">Financial</span>
+                    </div>
+                  </div>
+
+                  <div class="project-item">
+                    <p>Applied migration analysis to investigate customers' behavior and developed reports to provide useful insights.</p>
+                    <div class="project-tags">
+                      <span class="project-tag-tool">SAS</span>
+                      <span class="project-tag-tool">Excel</span>
+                      <span class="project-tag-industry">Retail</span>
+                    </div>
+                  </div>
+
+                  <div class="project-item">
+                    <p>Applied a time series model to estimate the impact of marketing activities, measuring campaign effectiveness and determining how to maximise the impact of all media activities.</p>
+                    <div class="project-tags">
+                      <span class="project-tag-tool">Excel</span>
+                      <span class="project-tag-tool">OxMetrics</span>
+                      <span class="project-tag-industry">Telecommunication</span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
             </div>
           </div>
 
@@ -814,6 +1077,12 @@
                 <li>Creating statistical tables for reporting.</li>
                 <li>Developing statistical analysis based on project needs (correlation, regression models, Factor Analysis).</li>
               </ul>
+              <div class="achievements">
+                <div class="achievements-label">Main Achievement</div>
+                <ul>
+                  <li>Improved delivery timelines by 10% through the strategic onboarding and management of an external team.</li>
+                </ul>
+              </div>
             </div>
           </div>
 
@@ -1136,6 +1405,57 @@
         </div>
       </section>
 
+      <!-- HOBBIES -->
+      <section id="hobbies" class="section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 21.7C5.4 15.5 2 11.2 2 8a6 6 0 0110-4.5A6 6 0 0122 8c0 3.2-3.4 7.5-10 13.7z"/></svg>
+          </div>
+          <h2>Hobbies</h2>
+          <div class="underbar"></div>
+        </div>
+
+        <div class="card-list-3">
+
+          <div class="card-item" style="align-items:flex-start;">
+            <div class="card-icon" style="margin-top:2px;">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a5 5 0 015 5c0 3.5-5 11-5 11S7 10.5 7 7a5 5 0 015-5z"/><circle cx="12" cy="7" r="2"/></svg>
+            </div>
+            <div>
+              <div class="card-name">Dance</div>
+              <div class="card-meta" style="line-height:1.7; margin-top:6px;">
+                Passionate about dancing in all its forms. For energy and stamina: Contemporary dance, Ballet and Afro dance. For strength: Pole dance, Heel dance, Aerial Dance and Hoop. For the social side: Tango, Disco, and Latin dances — Salsa, Merengue, Bachata and Lindy Hop.
+              </div>
+            </div>
+          </div>
+
+          <div class="card-item" style="align-items:flex-start;">
+            <div class="card-icon" style="margin-top:2px;">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+            </div>
+            <div>
+              <div class="card-name">Fitness &amp; Wellness</div>
+              <div class="card-meta" style="line-height:1.7; margin-top:6px;">
+                Enjoying an active lifestyle through Pilates, Yoga and Cardio workouts to stay balanced in both body and mind.
+              </div>
+            </div>
+          </div>
+
+          <div class="card-item" style="align-items:flex-start;">
+            <div class="card-icon" style="margin-top:2px;">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+            </div>
+            <div>
+              <div class="card-name">Travel &amp; Culture</div>
+              <div class="card-meta" style="line-height:1.7; margin-top:6px;">
+                Passionate about exploring the world for cultural purposes, making the most of languages learned along the way. Enjoys local cuisine, monuments and historical sites. Has visited all Greek islands and the Balearic Islands, with the rest of the Spanish and European islands next on the list.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
       <footer>
         Christine Mavrommataki &nbsp;·&nbsp; Barcelona, Spain &nbsp;·&nbsp;
         <a href="mailto:christine.mavrommataki@gmail.com">christine.mavrommataki@gmail.com</a>
@@ -1147,6 +1467,14 @@
   </div><!-- /shell -->
 
   <script>
+    // Projects toggle
+    function toggleProjects(btn) {
+      const list = btn.nextElementSibling;
+      const isOpen = list.classList.toggle('open');
+      btn.classList.toggle('open', isOpen);
+      btn.setAttribute('aria-expanded', isOpen);
+    }
+
     // Burger / sidebar toggle (mobile)
     const burger  = document.getElementById('burger');
     const sidebar = document.getElementById('sidebar');
